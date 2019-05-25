@@ -97,7 +97,7 @@ product_000_NoLuck (1)                 // Item Code and Amount
 ```
 
 ```php
-list( $p, $c ) = (new LuckyDraw($prizes))->draw;
+list( $p, $c ) = (new LuckyDraw($prizes))->draw();
 ```
 
 - We will pass the Formatted Input i.e. $prizes
