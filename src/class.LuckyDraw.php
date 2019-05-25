@@ -57,7 +57,7 @@ class LuckyDraw
     private function multiply()
     {
         if (!$this->fraction) return;
-        if ($length = $this->setFraction() == 0) return;
+        if (($length = $this->setFraction()) === 0) return;
         $this->items = array_combine(
             array_keys($this->items),
             array_map('bcmul', $this->items,
@@ -77,6 +77,13 @@ class LuckyDraw
             }
         }
         return (int)$length;
+    }
+
+    private function getPositive()
+    {
+        $this->items = array_filter($this->items, function ($v) {
+            return $v > 0;
+        });
     }
 
     private function numSequence($array)
@@ -104,6 +111,7 @@ class LuckyDraw
     private function generate()
     {
         if (count($this->items) == 1) return current($this->items);
+        $this->getPositive();
         $this->multiply();
         $sum = array_sum($this->items);
         if ($sum > mt_getrandmax() || $sum < 1) {
@@ -112,10 +120,6 @@ class LuckyDraw
         }
         $rand = mt_rand(1, (int)$sum);
         foreach ($this->items as $key => $value) {
-            if ($value < 0) {
-                if ($this->check) throw new \UnexpectedValueException('Negative probability not allowed!');
-                continue;
-            }
             $rand -= (int)$value;
             if ($rand <= 0) {
                 return $key;
