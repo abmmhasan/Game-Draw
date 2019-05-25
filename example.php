@@ -46,7 +46,7 @@ $prizes=[
 //Drawing 100K lotteries
 try{
     for($i=0;$i<100000;$i++){
-        list($p,$c)=(new LuckyDraw($prizes))->draw;
+        list($p,$c)=(new LuckyDraw($prizes))->draw();
         echo $p.'('.$c.'), ';
     }
 }catch(\Exception $e){
