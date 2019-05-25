@@ -1,4 +1,19 @@
 <?php
+
+/**
+ * The Lucky-Draw class takes an example array and generates Item and Item count for winners.
+ *
+ * Usage examples can be found in the included README file, and all methods
+ * should have adequate documentation to get you started.
+ *
+ *
+ * Minimum requirements: PHP 7.1.x, BCMath extension (may need to install manually in Linux servers).
+ *
+ * @author      A. B. M. Mahmudul Hasan <abmmhasan@gmail.com>
+ * @copyright   Copyright (c), 2019 A. B. M. Mahmudul Hasan
+ * @license     MIT public license
+ */
+
 class LuckyDraw
 {
     /**
