@@ -103,11 +103,9 @@ list( $p, $c ) = (new LuckyDraw($prizes))->draw();
 - We will pass the Formatted Input i.e. $prizes
 - From above example, (after execution) $p will be the Item Code and $c will be the item count.
 
-## Risks & Solutions
+## Inventory Solutions
 
-There is some risks regarding the generation.
-- Available stock should be passed (after subtracting used amount from stock amount) in chances properly (if it is mainitained with inventory).
-- If available stock become Nil, it is better to remove it from the array or can set chance to 0 (zero).
+Available stock should be passed (after subtracting used amount from stock amount) in chances properly.
 
 ## Performance
 
