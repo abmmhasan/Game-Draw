@@ -1,7 +1,6 @@
 # Lucky Draw
 
-[![Source Code][badge-source]][source]
-[![Total Downloads][badge-downloads]][downloads]
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 
 This class takes an example array (format is given in example file, will also explain below) and generates Item and Item count for winners.
