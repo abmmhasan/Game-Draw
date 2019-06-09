@@ -1,5 +1,9 @@
 # Lucky Draw
 
+[![Source Code][badge-source]][source]
+[![Total Downloads][badge-downloads]][downloads]
+
+
 This class takes an example array (format is given in example file, will also explain below) and generates Item and Item count for winners.
 
 > Please don't use this to generate things/prizes with People's hard earned money. It is intended to make things fun with bonus gifts only.
