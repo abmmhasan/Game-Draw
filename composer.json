@@ -1,0 +1,21 @@
+{
+    "name": "abmmhasan/lucky-draw",
+    "description": "Generates Item and Item count for winners.",
+    "type": "library",
+    "license": "MIT",
+    "homepage": "https://abmmhasan.github.io/Lucky-Draw/",
+    "authors": [
+        {
+            "name": "abmmhasan",
+            "email": "abmmhasan346@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "AbmmHasan\\LuckyDraw\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=7.0"
+    }
+}

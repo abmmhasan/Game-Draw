@@ -1,12 +1,13 @@
 <?php
 
+use AbmmHasan\LuckyDraw\LuckyDraw;
+
 if(!function_exists('bcmul')){
     echo 'Requires php-bcmath Feature to be Enabled\n';
     echo 'For Ubuntu: apt install php7.1-bcmath\n';
     die;
 }
 
-require('src/class.LuckyDraw.php');
 $prizes=[
     [
         'item'=>'<span style="color:green">No Gift</span>',

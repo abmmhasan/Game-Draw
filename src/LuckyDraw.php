@@ -1,6 +1,12 @@
 <?php
 
 /**
+ * @link https://github.com/abmmhasan/Lucky-Draw
+ */
+
+namespace AbmmHasan\LuckyDraw;
+
+/**
  * The Lucky-Draw class takes an example array and generates Item and Item count for winners.
  *
  * Usage examples can be found in the included README file, and all methods
