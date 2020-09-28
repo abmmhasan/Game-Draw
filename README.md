@@ -15,6 +15,12 @@ Language: PHP 7+
 
 PHP Extension: BCMath (may need to install manually in Linux servers)
 
+## Installation
+
+```
+composer require abmmhasan/lucky-draw
+```
+
 ## Usage
 
 ### Input Data
