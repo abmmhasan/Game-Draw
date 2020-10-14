@@ -13,7 +13,7 @@ namespace AbmmHasan\LuckyDraw;
  * should have adequate documentation to get you started.
  *
  *
- * Minimum requirements: PHP 7.1.x, BCMath extension (may need to install manually in Linux servers).
+ * Minimum requirements: PHP 7.0.x, BCMath extension (may need to install manually in Linux servers).
  *
  * @author      A. B. M. Mahmudul Hasan <abmmhasan@gmail.com>
  * @copyright   Copyright (c), 2019 A. B. M. Mahmudul Hasan
