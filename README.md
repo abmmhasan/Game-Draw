@@ -3,8 +3,9 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 
-The Lucky Draw class takes an example array (format is given in example file, will also explain below) and generates Item and Item count for winners.
-The Mega Draw class takes 2 example array (format is given in example file, will also explain below) and generates winners for each prize according to given amount per prize.
+The Lucky Draw class takes an example array (explained below) and generates Item and Item count for winners.
+
+The Mega Draw class takes 2 example array (explained below) and generates winners for each prize according to given amount per prize.
 
 > Please don't use this to generate things/prizes with People's hard earned money. It is intended to make things fun with bonus gifts only.
 
