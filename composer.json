@@ -12,7 +12,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "AbmmHasan\\LuckyDraw\\": "src/"
+            "AbmmHasan\\Draw\\": "src/Draw"
         }
     },
     "require": {

@@ -4,7 +4,7 @@
  * @link https://github.com/abmmhasan/Lucky-Draw
  */
 
-namespace AbmmHasan\LuckyDraw;
+namespace AbmmHasan\Draw;
 
 /**
  * The Lucky-Draw class takes an example array and generates Item and Item count for winners.
