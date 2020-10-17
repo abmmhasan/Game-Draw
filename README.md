@@ -7,7 +7,6 @@ This class takes an example array (format is given in example file, will also ex
 
 > Please don't use this to generate things/prizes with People's hard earned money. It is intended to make things fun with bonus gifts only.
 
-To draw multiple Gifts for multiple user same time use [Mega Draw Library](https://abmmhasan.github.io/Mega-Draw "Mega Draw").
 
 ## Prerequisits
 
@@ -18,10 +17,10 @@ PHP Extension: BCMath (may need to install manually in Linux servers)
 ## Installation
 
 ```
-composer require abmmhasan/lucky-draw
+composer require abmmhasan/game-draw
 ```
 
-## Usage
+## Usage (Lucky Draw)
 
 ### Input Data
 
@@ -112,23 +111,154 @@ list( $p, $c ) = (new LuckyDraw($prizes))->draw();
 - We will pass the Formatted Input i.e. $prizes
 - From above example, (after execution) $p will be the Item Code and $c will be the item count.
 
-## Inventory Solutions
+### Inventory Solutions
 
 Available stock should be passed (after subtracting used amount from stock amount) in chances properly.
 
-## Performance
+## Usage (Mega Draw)
 
-- **Single Query**
-    - Execution time: 0.000036 Second (average)
-    - Used Memory: 392.59 KB, Peak: 436.39 KB
-- **10 Query**
-    - Execution time: 0.000150 Second (average)
-    - Used Memory: 393.16 KB, Peak: 435.95 KB
-- **Tested on**
-    - CPU: 3.7 GHz Core i3-6100
-    - RAM: 12GB 2400 Bus
-    - OS: Windows 10 (64 bit)
-    - _Query: Above example (in Input section) has been processed for getting output_
+### Input Data
+
+```php
+$prizes = 
+[
+    'product_001'=>50,        // Item Code/Identifier => Amount of the item
+    'product_002'=>5,
+    'product_003'=>3,
+    'product_004'=>2,
+    'product_005'=>1
+];
+```
+
+- **item**: Provide your item's unique identifier
+
+- **amounts**: Amount of gift. It must be a positive integer value.
+
+To pass users where the Gifts are general:
+
+```php
+$users = 
+['user01','user02','user03',..........,'userNNNNNNN']; // user identity
+```
+
+Or where the gifts are specifc per user group
+
+```php
+$users = 
+[
+    'user01'=>'product_002',        // user identity => Item Code/Identifier
+    'user02'=>'product_003',
+    'user03'=>'product_002',
+    'user04'=>'product_001',
+    .
+    .
+    'user NNNNNNN'=>'product_002'
+];
+```
+
+### Output Data
+
+```php
+Array
+(
+    [product_001] => Array
+        (
+            [0] => usr47671
+            [1] => usr57665
+            [2] => usr92400
+            [3] => usr7249
+            [4] => usr37860
+            [5] => usr57280
+            [6] => usr97204
+            [7] => usr82268
+            [8] => usr16521
+            [9] => usr24864
+            [10] => usr52595
+            [11] => usr39674
+            [12] => usr52520
+            [13] => usr42316
+            [14] => usr41327
+            [15] => usr41461
+            [16] => usr74861
+            [17] => usr40589
+            [18] => usr79599
+            [19] => usr86757
+            [20] => usr92409
+            [21] => usr51569
+            [22] => usr37905
+            [23] => usr43123
+            [24] => usr98934
+            [25] => usr56999
+            [26] => usr26529
+            [27] => usr37097
+            [28] => usr8417
+            [29] => usr65328
+            [30] => usr11656
+            [31] => usr56668
+            [32] => usr87999
+            [33] => usr83457
+            [34] => usr39765
+            [35] => usr31917
+            [36] => usr22395
+            [37] => usr27971
+            [38] => usr89124
+            [39] => usr42330
+            [40] => usr30652
+            [41] => usr19458
+            [42] => usr96018
+            [43] => usr32073
+            [44] => usr55307
+            [45] => usr23103
+            [46] => usr37772
+            [47] => usr64712
+            [48] => usr39795
+            [49] => usr3161
+        )
+
+    [product_002] => Array
+        (
+            [0] => usr50344
+            [1] => usr60450
+            [2] => usr62662
+            [3] => usr26976
+            [4] => usr56486
+        )
+
+    [product_003] => Array
+        (
+            [0] => usr92895
+            [1] => usr37642
+            [2] => usr85241
+        )
+
+    [product_004] => Array
+        (
+            [0] => usr84327
+            [1] => usr22985
+        )
+
+    [product_005] => Array
+        (
+            [0] => usr26819
+        )
+
+)
+```
+
+To get Gift for General Case:
+
+```php
+print_r((new Megadraw())->get($prizes,$users));
+```
+
+To get Gift for Grouped Case:
+
+```php
+print_r((new Megadraw())->get($prizes,$users,true));
+```
+
+- We will pass the Formatted Input i.e. $prizes
+- From the above example, (after execution) we will get Users won in each category.
 
 ## Support
 
