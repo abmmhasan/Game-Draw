@@ -1,4 +1,4 @@
-# Lucky Draw
+# Game Draw
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
