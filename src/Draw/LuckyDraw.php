@@ -19,6 +19,7 @@ namespace AbmmHasan\Draw;
  * @copyright   Copyright (c), 2019 A. B. M. Mahmudul Hasan
  * @license     MIT public license
  */
+
 class LuckyDraw
 {
     /**
@@ -93,9 +94,7 @@ class LuckyDraw
 
     private function numSequence($array)
     {
-        if (!array_key_exists(0, $array)) {
-            return false;
-        }
+        if (!array_key_exists(0, $array)) return false;
         return array_keys($array) === range(0, count($array) - 1);
     }
 
@@ -122,10 +121,8 @@ class LuckyDraw
         $this->multiply();
         $sum = array_sum($this->items);
         if ($sum > mt_getrandmax() || $sum < 1) {
-            if ($this->check){
-                throw new \UnexpectedValueException('Chances(Item/Amount) out of range!');
-            }
-            return false;
+            if ($this->check) throw new \UnexpectedValueException('Chances(Item/Amount) out of range!');
+            return;
         }
         $rand = mt_rand(1, (int)$sum);
         foreach ($this->items as $key => $value) {
