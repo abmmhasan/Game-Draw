@@ -19,7 +19,6 @@ namespace AbmmHasan\Draw;
  * @copyright   Copyright (c), 2019 A. B. M. Mahmudul Hasan
  * @license     MIT public license
  */
-
 class LuckyDraw
 {
     /**
@@ -121,8 +120,10 @@ class LuckyDraw
         $this->multiply();
         $sum = array_sum($this->items);
         if ($sum > mt_getrandmax() || $sum < 1) {
-            if ($this->check) throw new \UnexpectedValueException('Chances(Item/Amount) out of range!');
-            return;
+            if (!$this->check) {
+                return false;
+            }
+            throw new \UnexpectedValueException('Chances(Item/Amount) out of range!');
         }
         $rand = mt_rand(1, (int)$sum);
         foreach ($this->items as $key => $value) {
