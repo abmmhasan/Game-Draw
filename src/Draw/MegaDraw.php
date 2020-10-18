@@ -36,8 +36,7 @@ class MegaDraw
         if (!self::intValue($items) || !self::positiveValue($items)) {
             throw new \UnexpectedValueException('Prize quantity should be a positive integer value!');
         }
-        if ($grouped) return self::groupedGift($items, $users);
-        else return self::generalGift($items, $users);
+        return $grouped ? self::groupedGift($items, $users) : self::generalGift($items, $users);
     }
 
     private static function intValue(array $array)
@@ -47,8 +46,7 @@ class MegaDraw
 
     private static function positiveValue(array $array)
     {
-        if (min($array) >= 0) return true;
-        return false;
+        return min($array) >= 0;
     }
 
     private static function generalGift($items, $users)
@@ -85,10 +83,11 @@ class MegaDraw
         $select = array();
         for ($i = 0; $i < $total; $i++) {
             $offset = rand(0, count($users) - 1);
-            if (isset($users[$offset])) {
-                $select[] = $users[$offset];
-                array_splice($users, $offset, 1);
-            } else break;
+            if (!isset($users[$offset])) {
+                break;
+            }
+            $select[] = $users[$offset];
+            array_splice($users, $offset, 1);
         }
         return $select;
     }
