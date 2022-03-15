@@ -1,6 +1,6 @@
 # Game Draw
 
-![Scrutinizer code quality (GitHub/Bitbucket)](https://img.shields.io/scrutinizer/quality/g/abmmhasan/game-draw/main)
+![Scrutinizer code quality (GitHub/Bitbucket)](https://img.shields.io/scrutinizer/quality/g/abmmhasan/game-draw)
 ![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/abmmhasan/game-draw)
 ![Packagist Downloads](https://img.shields.io/packagist/dt/abmmhasan/game-draw)
 ![Packagist License](https://img.shields.io/packagist/l/abmmhasan/game-draw)
