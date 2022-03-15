@@ -1,6 +1,6 @@
 # Game Draw
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![Latest Stable Version](http://poser.pugx.org/abmmhasan/game-draw/v)](https://packagist.org/packages/abmmhasan/game-draw) [![Total Downloads](http://poser.pugx.org/abmmhasan/game-draw/downloads)](https://packagist.org/packages/abmmhasan/game-draw) [![Latest Unstable Version](http://poser.pugx.org/abmmhasan/game-draw/v/unstable)](https://packagist.org/packages/abmmhasan/game-draw) [![License](http://poser.pugx.org/abmmhasan/game-draw/license)](https://packagist.org/packages/abmmhasan/game-draw) [![PHP Version Require](http://poser.pugx.org/abmmhasan/game-draw/require/php)](https://packagist.org/packages/abmmhasan/game-draw)
 
 
 The Lucky Draw class takes an example array (explained below) and generates Item and Item count for winners.
