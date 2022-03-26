@@ -1,14 +1,14 @@
 # Game Draw
 
-![Scrutinizer code quality (GitHub/Bitbucket)](https://img.shields.io/scrutinizer/quality/g/abmmhasan/game-draw)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/abmmhasan/game-draw/build)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/56e7f49275dc4042b67d53b4209b193d)](https://www.codacy.com/gh/abmmhasan/Game-Draw/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=abmmhasan/Game-Draw&amp;utm_campaign=Badge_Grade)
 ![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/abmmhasan/game-draw)
 ![Packagist Downloads](https://img.shields.io/packagist/dt/abmmhasan/game-draw)
-![Packagist License](https://img.shields.io/packagist/l/abmmhasan/game-draw)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 ![Packagist Version](https://img.shields.io/packagist/v/abmmhasan/game-draw)
 ![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/abmmhasan/game-draw)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/abmmhasan/game-draw)
 ![Lines of code](https://img.shields.io/tokei/lines/github/abmmhasan/game-draw)
-
 
 The Lucky Draw class takes an example array (explained below) and generates Item and Item count for winners.
 

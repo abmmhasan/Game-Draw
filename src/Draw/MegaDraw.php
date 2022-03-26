@@ -28,7 +28,7 @@ class MegaDraw
      * @return array with Item Code/Name and Item Counter
      * @exception If required keys not present/values for the keys are not properly formatted
      */
-    public function get(array $items, array $users, $grouped = false)
+    public function get(array $items, array $users, bool $grouped = false): array
     {
         if (count($items) < 1) {
             throw new \LengthException('Invalid number of items!');
@@ -40,17 +40,17 @@ class MegaDraw
         else return self::generalGift($items, $users);
     }
 
-    private static function intValue(array $array)
+    private static function intValue(array $array): bool
     {
         return $array === array_filter($array, 'is_int');
     }
 
-    private static function positiveValue(array $array)
+    private static function positiveValue(array $array): bool
     {
         return min($array) >= 0;
     }
 
-    private static function generalGift($items, $users)
+    private static function generalGift($items, $users): array
     {
         $users = self::select($users, array_sum($items));
         $select = array();
@@ -60,7 +60,7 @@ class MegaDraw
         return $select;
     }
 
-    private static function groupedGift($items, $users)
+    private static function groupedGift($items, $users): array
     {
         $users = self::groupBase($users);
         $gift_array = [];
@@ -70,7 +70,7 @@ class MegaDraw
         return $gift_array;
     }
 
-    private static function groupBase($users)
+    private static function groupBase($users): array
     {
         $group = array();
         foreach ($users as $user => $gift) {
@@ -79,7 +79,7 @@ class MegaDraw
         return $group;
     }
 
-    private static function select($users, $total)
+    private static function select($users, $total): array
     {
         $select = array();
         for ($i = 0; $i < $total; $i++) {

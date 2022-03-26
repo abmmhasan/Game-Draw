@@ -21,19 +21,24 @@ namespace AbmmHasan\Draw;
  */
 class LuckyDraw
 {
-    /**
-     * @param array $items , the list of items
-     * @param bool $fraction , If the chances/amounts include fraction number(true by default) or not(false)
-     * @param bool $check , If the items are already checked before can omit by passing false
-     * @return array with Item Code/Name and Item Counter
-     * @exception If required keys not present/values for the keys are not properly formatted
-     */
     private $items = [];
     private $fraction;
     private $check;
     private $draw = [];
 
+
+    /**
+     * @param array $items the list of items
+     * @param bool $fraction If the chances/amounts include fraction number(true by default) or not(false)
+     * @param bool $check If the items are already checked before can omit by passing false
+     * @exception If required keys not present/values for the keys are not properly formatted
+     */
     public function __construct(array $items, bool $fraction = true, bool $check = true)
+    {
+        $this->init($items, $fraction, $check);
+    }
+
+    private function init(array $items, bool $fraction = true, bool $check = true)
     {
         if (count($items) < 1) {
             throw new \LengthException('Invalid number of items!');
@@ -54,11 +59,17 @@ class LuckyDraw
         $this->gift($items);
     }
 
-    public function draw()
+    /**
+     * @return array
+     */
+    public function draw(): array
     {
         return $this->draw;
     }
 
+    /**
+     * @return void
+     */
     private function multiply()
     {
         if (!$this->fraction) return;
@@ -70,7 +81,10 @@ class LuckyDraw
                     str_pad(1, $length, '0'))));
     }
 
-    private function setFraction()
+    /**
+     * @return int
+     */
+    private function setFraction(): int
     {
         $length = 0;
         foreach ($this->items as $item) {
@@ -84,19 +98,30 @@ class LuckyDraw
         return (int)$length;
     }
 
+    /**
+     * @return void
+     */
     private function getPositive()
     {
-        $this->items = array_filter($this->items, function ($v) {
-            return $v > 0;
+        $this->items = array_filter($this->items, function ($value) {
+            return $value > 0;
         });
     }
 
-    private function numSequence($array)
+    /**
+     * @param $array
+     * @return bool
+     */
+    private function numSequence($array): bool
     {
         if (!array_key_exists(0, $array)) return false;
         return array_keys($array) === range(0, count($array) - 1);
     }
 
+    /**
+     * @param $items
+     * @return void
+     */
     private function gift($items)
     {
         $this->items = array_column($items, 'chances', 'item');
@@ -113,6 +138,9 @@ class LuckyDraw
         $this->draw = [$item, $count];
     }
 
+    /**
+     * @return false|int|mixed|string
+     */
     private function generate()
     {
         if (count($this->items) == 1) return current($this->items);
