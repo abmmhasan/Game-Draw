@@ -16,7 +16,10 @@
         }
     },
     "require": {
-        "php": ">=7.0",
+        "php": ">=8.0",
         "ext-bcmath": "*"
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^6.3"
     }
 }

@@ -1,6 +1,5 @@
 # Game Draw
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/abmmhasan/game-draw/build)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/56e7f49275dc4042b67d53b4209b193d)](https://www.codacy.com/gh/abmmhasan/Game-Draw/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=abmmhasan/Game-Draw&amp;utm_campaign=Badge_Grade)
 ![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/abmmhasan/game-draw)
 ![Packagist Downloads](https://img.shields.io/packagist/dt/abmmhasan/game-draw)
@@ -8,20 +7,18 @@
 ![Packagist Version](https://img.shields.io/packagist/v/abmmhasan/game-draw)
 ![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/abmmhasan/game-draw)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/abmmhasan/game-draw)
-![Lines of code](https://img.shields.io/tokei/lines/github/abmmhasan/game-draw)
 
-The Lucky Draw class takes an example array (explained below) and generates Item and Item count for winners.
 
-The Mega Draw class takes 2 example array (explained below) and generates winners for each prize according to given amount per prize.
+The Game Draw library provides 2 different way of winner selection based on user's input and selected method.
 
-> Please don't use this to generate things/prizes with People's hard earned money. It is intended to make things fun with bonus gifts only.
+> Please don't use this to generate things/prizes with People's hard-earned money. It is intended to make things fun with bonus gifts only.
 
 
 ## Prerequisits
 
-Language: PHP 7+
+Language: PHP 8/+
 
-PHP Extension: BCMath (may need to install manually in Linux servers)
+PHP Extension: BCMath (may need to install manually)
 
 ## Installation
 
@@ -34,16 +31,16 @@ composer require abmmhasan/game-draw
 ### Input Data
 
 ```php
-[
+$products = [
     [
         'item' => 'product_000_NoLuck', // Item code or Identifier
         'chances' => '100000',          // Item Chances
-        'amounts '=> [ 1 ]              // Item Amounts
+        'amounts'=> [ 1 ]              // Item Amounts
     ],
     [
         'item' => 'product_001',
         'chances' => '1000',
-        'amounts' => [ rand(1,100) ]    // Random Value passing
+        'amounts' => '1.5,10.00001,1'    // Weighted CSV formatted range (min,max,bias)
     ],
     [
         'item' => 'product_002',
@@ -52,7 +49,6 @@ composer require abmmhasan/game-draw
             1 => 100,                   // Amount chances
             5 => 50,                    // Format: Amount => Chances
             10 => 10.002,               // Fraction allowed
-            rand(50,60) => 1,           // Random Value in Amount
         ]
     ],
     [
@@ -75,16 +71,14 @@ composer require abmmhasan/game-draw
 
 - **item**: Provide your item's unique identifier
 
-- **chances**: Weight of item.
+- **chances**: Weight of item (Float/Int).
     - It will be compared along all the items in array. 
     - The higher the chances the greater the chances of getting the item.
-    - Fraction number supported
-    - In case of active inventory we can pass available item stock here
+    - In case of active inventory you can pass available item stock here
     
-- **amounts**: Array of Item amount. It can be any like following:
-    - Single Value, i.e. [ 1 ] or random single value, i.e. [ 1-100 ]
-    - Fraction number supported
-    - Can be weighted amount, i.e.    
+- **amounts**: String or Array of Item amount (Float/Int). It can be any like:
+    - (array) Single Positive value, i.e. [ 1 ] or Multiple Positive value (randomly picked), i.e. [ 1, 2, 3, 5]
+    - (array) Weighted amount, i.e.    
         ```php
         [
             5 => 100,
@@ -92,39 +86,32 @@ composer require abmmhasan/game-draw
             50 => 10,
             80 => 5.001
         ]
-        ```      
-    - We can also pass random single value, i.e. [ 50-100 ] in amount part using rand() or mt_rand().       
-        ```php
-        [
-            1 => 100,
-            5  => 50,
-            10 => 10,
-            rand(50,100) => 5
-        ]
         ```
-    - Or can be selective amount for random pick
-         ```php
-        [ 10, 15, 30, 50, 90 ]
-        ```
+    - (String) Weighted CSV formatted range (min,max,bias) ```'1,10.00001,0.001'```
+      - Only 3 members allowed in CSV format **min,max,bias**
+      - Max should be greater than or equal to min, bias should be greater than 0
+      - The higher the bias, the more the chance to pick the lowest amount
 
 ### Output Data
 
-```markdown
-product_000_NoLuck (1)                 // Item Code and Amount
+```php
+$luckyDraw = new AbmmHasan\Draw\LuckyDraw($products);
+$luckyDraw->pick()
 ```
+Will output the data similar as following,
 
 ```php
-list( $p, $c ) = (new LuckyDraw($prizes))->draw();
+[
+    'item' => 'product_000_NoLuck', // The item name
+    'amount' => 1 // the selected amount
+]
 ```
-
-- We will pass the Formatted Input i.e. $prizes
-- From above example, (after execution) $p will be the Item Code and $c will be the item count.
 
 ### Inventory Solutions
 
 Available stock should be passed (after subtracting used amount from stock amount) in chances properly.
 
-## Usage (Mega Draw)
+## Usage (Grand Draw)
 
 ### Input Data
 
@@ -143,30 +130,32 @@ $prizes =
 
 - **amounts**: Amount of gift. It must be a positive integer value.
 
-To pass users where the Gifts are general:
+To pass users, you've to make a CSV file with at-least 1 column. 1st column will indicate user identity.
 
-```php
-$users = 
-['user01','user02','user03',..........,'userNNNNNNN']; // user identity
-```
-
-Or where the gifts are specifc per user group
-
-```php
-$users = 
-[
-    'user01'=>'product_002',        // user identity => Item Code/Identifier
-    'user02'=>'product_003',
-    'user03'=>'product_002',
-    'user04'=>'product_001',
-    .
-    .
-    'user NNNNNNN'=>'product_002'
-];
+```csv
+"usr47671",
+"usr57665",
+"usr47671",.....
 ```
 
 ### Output Data
 
+```php
+$bucket = new GrandDraw();
+
+// set resources
+$bucket->setItems([ // set prizes
+    'product_001' => 10,        // Item Code/Identifier => Amount of the item
+    'product_002' => 5,
+    'product_003' => 3,
+    'product_004' => 2,
+    'product_005' => 1
+])->setUserListFilePath('./Sample1000.csv'); // set the CSV file location
+
+// get the winners
+$bucket->getWinners()
+```
+Will provide the output similar as following,
 ```php
 Array
 (
@@ -182,46 +171,6 @@ Array
             [7] => usr82268
             [8] => usr16521
             [9] => usr24864
-            [10] => usr52595
-            [11] => usr39674
-            [12] => usr52520
-            [13] => usr42316
-            [14] => usr41327
-            [15] => usr41461
-            [16] => usr74861
-            [17] => usr40589
-            [18] => usr79599
-            [19] => usr86757
-            [20] => usr92409
-            [21] => usr51569
-            [22] => usr37905
-            [23] => usr43123
-            [24] => usr98934
-            [25] => usr56999
-            [26] => usr26529
-            [27] => usr37097
-            [28] => usr8417
-            [29] => usr65328
-            [30] => usr11656
-            [31] => usr56668
-            [32] => usr87999
-            [33] => usr83457
-            [34] => usr39765
-            [35] => usr31917
-            [36] => usr22395
-            [37] => usr27971
-            [38] => usr89124
-            [39] => usr42330
-            [40] => usr30652
-            [41] => usr19458
-            [42] => usr96018
-            [43] => usr32073
-            [44] => usr55307
-            [45] => usr23103
-            [46] => usr37772
-            [47] => usr64712
-            [48] => usr39795
-            [49] => usr3161
         )
 
     [product_002] => Array
@@ -253,21 +202,6 @@ Array
 
 )
 ```
-
-To get Gift for General Case:
-
-```php
-print_r((new Megadraw())->get($prizes,$users));
-```
-
-To get Gift for Grouped Case:
-
-```php
-print_r((new Megadraw())->get($prizes,$users,true));
-```
-
-- We will pass the Formatted Input i.e. $prizes
-- From the above example, (after execution) we will get Users won in each category.
 
 ## Support
 
