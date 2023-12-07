@@ -15,7 +15,7 @@ class GrandDraw
      * Sets the file path for the user list.
      *
      * @param string $userListFilePath The file path for the user list.
-     * @return GrandDraw Returns the BucketDraw instance.
+     * @return GrandDraw Returns the instance.
      * @throws Exception If the file does not exist.
      */
     public function setUserListFilePath(string $userListFilePath): GrandDraw
@@ -32,7 +32,7 @@ class GrandDraw
      * Sets the items for the BucketDraw object.
      *
      * @param array $items The array of items to be set.
-     * @return GrandDraw The updated BucketDraw object.
+     * @return GrandDraw The updated object.
      */
     public function setItems(array $items): GrandDraw
     {

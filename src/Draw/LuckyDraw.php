@@ -42,7 +42,7 @@ class LuckyDraw
     public function pick(bool $check = true): array
     {
         $check && $this->check();
-        $items = array_column($this->items, 'chances', 'item');
+        $items = array_filter(array_column($this->items, 'chances', 'item'));
         $items = $this->prepare($items);
         $pickedItem = $this->draw($items);
         $amounts = $this->items[array_search($pickedItem, array_column($this->items, 'item'))]['amounts'];
